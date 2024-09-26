@@ -1,0 +1,304 @@
+{
+  "title": "JSON schema for beautifyrc",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "css": {
+      "type": "object",
+      "description": "Property CSS document",
+      "allOf":[
+        {"$ref": "#/definitions/baseOption"},
+        {"$ref": "#/definitions/cssOption"}
+      ]
+      },
+    "html": {
+      "type": "object",
+      "description": "Property HTML document",
+      "allOf":[
+        {"$ref": "#/definitions/baseOption"},
+        {"$ref": "#/definitions/htmlOption"}
+      ]
+    },
+    "js": {
+      "type": "object",
+      "description": "Property JS/TS document",
+      "allOf":[
+        {"$ref": "#/definitions/baseOption"},
+        {"$ref": "#/definitions/jsOption"}
+      ]
+    }
+  },
+  "definitions": {
+    "baseOption": {
+      "type": "object",
+      "properties": {
+        "disabled": {
+          "description": "Support passing the source text back with no change",
+          "type": "boolean",
+          "default": false
+        },
+        "eol": {
+          "description": "Character(s) to use as line terminators",
+          "type": "string",
+          "default": "\n"
+        },
+        "end_with_newline": {
+          "description": "End output with newline",
+          "type": "boolean",
+          "default": false
+        },
+        "indent_size": {
+          "description": "Indentation size",
+          "type": "number",
+          "default": 4
+        },
+        "indent_char": {
+          "description": "Indentation character",
+          "type": "string",
+          "default": " "
+        },
+        "indent_level": {
+          "description": "Initial indentation level",
+          "type": "number",
+          "default": 0
+        },
+        "preserve_newlines": {
+          "description": "Preserve line-breaks",
+          "type": "boolean",
+          "default": true
+        },
+        "max_preserve_newlines": {
+          "description": "Number of line-breaks to be preserved in one chunk",
+          "type": "number",
+          "default": 10
+        },
+        "indent_with_tabs": {
+          "description": "Indent with tabs",
+          "type": "boolean",
+          "default": false
+        },
+        "wrap_line_length": {
+          "description": "Maximum characters per line",
+          "type": "number",
+          "default": 0
+        },
+        "indent_empty_lines": {
+          "description": "Keep indentation on empty lines",
+          "type": "boolean",
+          "default": false
+        },
+        "templating":{
+          "description": "List of templating languages",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["auto", "none", "angular", "django", "erb", "handlebars", "php", "smarty"]
+          },
+          "default": "auto"
+        }
+      }
+    },
+    "cssOption": {
+      "type": "object",
+      "properties": {
+        "selector_separator_newline": {
+          "description": "Add a newline between multiple selectors",
+          "type": "boolean",
+          "default": true
+        },
+        "newline_between_rules": {
+          "description": "Add a newline between CSS rules",
+          "type": "boolean",
+          "default": true
+        },
+        "space_around_selector_separator": {
+          "description": "Don't indent chained method calls (deprecated - replaced with space_around_combinator)",
+          "type": "boolean",
+          "default": false,
+          "deprecated": true
+        },
+        "space_around_combinator": {
+          "description": "Don't indent chained method calls",
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "jsOption": {
+      "type": "object",
+      "properties": {
+        "brace_style": {
+          "description": "brace_style",
+          "type": "string",
+          "enum": [
+            "collapse",
+            "expand",
+            "end-expand",
+            "none",
+            "preserve-inline"
+          ],
+          "default": "collapse"
+        },
+        "unindent_chained_methods": {
+          "description": "Don't indent chained method calls",
+          "type": "boolean",
+          "default": false
+        },
+        "break_chained_methods": {
+          "description": "Break chained method calls across subsequent lines",
+          "type": "boolean",
+          "default": false
+        },
+        "space_in_paren": {
+          "description": "Add padding spaces within parentheses, ie. f( a, b )",
+          "type": "boolean",
+          "default": false
+        },
+        "jslint_happy": {
+          "description": "Enable jslint-stricter mode",
+          "type": "boolean",
+          "default": false
+        },
+        "space_after_anon_function": {
+          "description": "Add a space before an anonymous function's parens, ie. function ()",
+          "type": "boolean",
+          "default": false
+        },
+        "space_after_named_function": {
+          "description": "Add a space before a named function's parens, i.e. function example ()",
+          "type": "boolean",
+          "default": false
+        },
+        "keep_array_indentation": {
+          "description": "Preserve array indentation",
+          "type": "boolean",
+          "default": false
+        },
+        "space_before_conditional": {
+          "description": "Ensure a space before conditional statement",
+          "type": "boolean",
+          "default": true
+        },
+        "unescape_strings": {
+          "description": "Decode printable characters encoded in xNN notation",
+          "type": "boolean",
+          "default": false
+        },
+        "e4x": {
+          "description": "Pass E4X xml literals through untouched",
+          "type": "boolean",
+          "default": false
+        },
+        "comma_first": {
+          "description": "Put commas at the beginning of new line instead of end",
+          "type": "boolean",
+          "default": false
+        },
+        "operator_position": {
+          "description": " Set operator position",
+          "type": "string",
+          "enum": ["before-newline", "after-newline", "preserve-newline"],
+          "default": "before-newline"
+        }
+      }
+    },
+    "htmlOption": {
+      "type": "object",
+      "properties": {
+        "indent_inner_html": {
+          "description": "Indent <head> and <body> sections",
+          "type": "boolean",
+          "default": false
+        },
+        "indent_body_inner_html": {
+          "description": "",
+          "type": "boolean",
+          "default": true
+        },
+        "indent_head_inner_html": {
+          "description": "",
+          "type": "boolean",
+          "default": []
+        },
+        "indent_handlebars": {
+          "description": "format and indent {{#foo}} and {{/foo}}",
+          "type": "boolean",
+          "default": true
+        },
+        "wrap_attributes": {
+          "description": "Wrap attributes to new lines",
+          "type": "string",
+          "enum": ["auto", "force", "force-aligned", "force-expand-multiline", "aligned-multiple", "preserve", "preserve-aligned"],
+          "default": "auto"
+        },
+        "wrap_attributes_indent_size": {
+          "description": "Indent wrapped attributes to after N characters",
+          "type": "number",
+          "default": 4
+        },
+        "extra_liners": {
+          "description": " List of tags (defaults to [head,body,/html]) that should have an extra newline before them",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": ["head", "body", "/html"]
+        },
+        "inline": {
+          "description": "List of tags to be considered inline tags",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "a", "abbr", "area", "audio", "b", "bdi", "bdo", "br", "button", "canvas", "cite",
+            "code", "data", "datalist", "del", "dfn", "em", "embed", "i", "iframe", "img",
+            "input", "ins", "kbd", "keygen", "label", "map", "mark", "math", "meter", "noscript",
+            "object", "output", "progress", "q", "ruby", "s", "samp", "select", "small",
+            "span", "strong", "sub", "sup", "svg", "template", "textarea", "time", "u", "var",
+            "video", "wbr", "text", "acronym", "big", "strike", "tt"
+          ]
+        },
+        "void_elements": {
+          "description": "HTLM void elements - aka self-closing tags - aka singletons",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [ "area", "base", "br", "col", "embed", "hr", "img", "input", "keygen",
+          "link", "menuitem", "meta", "param", "source", "track", "wbr", "!doctype", "?xml",
+          "basefont", "isindex"]
+        },
+        "unformatted": {
+          "description": "List of tags that should not be reformatted",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "content_unformatted": {
+          "description": "List of tags whose content should not be reformatted",
+          "type": "boolean",
+          "default": ["pre", "textarea"]
+        },
+        "unformatted_content_delimiter": {
+          "description": "Keep text content together between this string",
+          "type": "string",
+          "default": ""
+        },
+        "indent_scripts": {
+          "description": "Sets indent level inside script tags",
+          "type": "string",
+          "enum": ["normal", "keep", "separate"],
+          "default": "normal"
+        },
+        "inline_custom_elements": {
+          "description": "Inline custom elements",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  }
+}
